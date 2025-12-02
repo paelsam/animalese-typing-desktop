@@ -81,4 +81,4 @@ chmod +x AnimaleseTypingSetup.AppImage
 
 Developed by @joshxviii
 
-Contributors: @rokrokss @jiwooh
+Contributors: @rokrokss @jiwooh @lorite
