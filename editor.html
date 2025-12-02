@@ -9,6 +9,7 @@ author: joshxviii
     <title>Animalese Typing</title>
     <link rel="stylesheet" href="assets\styles\main.css">
     <link rel="stylesheet" href="assets\styles\keyboard.css">
+    <link id="theme-style" rel="stylesheet" href="assets\styles\themes\default.css" />
 </head>
 <body>
     <div id="resize-border"></div>
@@ -32,6 +33,54 @@ author: joshxviii
 
         <div class="separator"></div>
         
+        <div class="catagory">
+            <h3 translation="settings.lang"></h3>
+            <select id="lang_select" onchange="updateLanguage(`${this.value}`)">
+                <option value="en"      translation="en"></option>
+                <option value="es"      translation="es"></option>
+                <option value="de"      translation="de"></option>
+                <option value="fr"      translation="fr"></option>
+                <option value="ko"      translation="ko"></option>
+                <option value="ja"      translation="ja"></option>
+                <option value="zh_CN"   translation="zh_CN"></option>
+            </select>
+        </div>
+
+        <div class="catagory">
+            <h3 translation="settings.theme"></h3>
+            <select id="theme_select" onchange="updateTheme(`${this.value}`)">
+                <option value="default" translation="theme.default"></option>
+                <option value="pink"    translation="theme.pink"></option>
+                <option value="green"   translation="theme.green"></option>
+                <option value="dark"    translation="theme.dark"></option>
+            </select>
+        </div>
+
+        <div class="catagory">
+            <h3 translation="settings.apps"></h3>
+            <label translation="settings.always_active">
+                <input type="checkbox" id="check_always_active" onchange="window.settings.set('always_active', this.checked);document.querySelectorAll('#apps_table, #apps_toggle').forEach(el => el.setAttribute('disabled', this.checked))"/>
+            </label>
+
+            <label id="apps_toggle" translation="settings.apps.mode" disabled="false">
+                <label class="toggle">
+                    <input type="checkbox" id="check_selected_active" onchange="window.settings.set('selected_active', this.checked);document.querySelectorAll(`[translation='settings.apps.active'], [translation='settings.apps.inactive']`).forEach(el => el.setAttribute('translation', this.checked?'settings.apps.active':'settings.apps.inactive'));document.getElementById('apps_tbody').setAttribute('inactive', !this.checked);"/>
+                    <span class="slider"></span>
+                </label>
+            </label>
+
+            <table id="apps_table" disabled="false">
+                <thead style="justify-items: center;">
+                    <tr>
+                        <th id="apps_description" style="font-size: 10px; opacity: .7;">
+                            <span translation="settings.apps.active"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="apps_tbody"></tbody>
+            </table>
+        </div>
+
         <div class="catagory">
             <h3 translation="settings.general"></h3>
 
@@ -61,46 +110,7 @@ author: joshxviii
                 <label translation="config_4">
                     <input type="radio" id="config_4" name="audio_mode" value="3">
                 </label>
-                
             </div>
-        </div>
-
-        <div class="catagory">
-            <h3 translation="settings.lang"></h3>
-            <select id="lang_select" onchange="updateLanguage(`${this.value}`)">
-                <option value="en"      translation="en"></option>
-                <option value="es"      translation="es"></option>
-                <option value="de"      translation="de"></option>
-                <option value="fr"      translation="fr"></option>
-                <option value="ko"      translation="ko"></option>
-                <option value="ja"      translation="ja"></option>
-                <option value="zh_CN"   translation="zh_CN"></option>
-            </select>
-        </div>
-    
-        <div class="catagory">
-            <h3 translation="settings.apps"></h3>
-            <label translation="settings.always_active">
-                <input type="checkbox" id="check_always_active" onchange="window.settings.set('always_active', this.checked);document.querySelectorAll('#apps_table, #apps_toggle').forEach(el => el.setAttribute('disabled', this.checked))"/>
-            </label>
-
-            <label id="apps_toggle" translation="settings.apps.mode" disabled="false">
-                <label class="toggle">
-                    <input type="checkbox" id="check_selected_active" onchange="window.settings.set('selected_active', this.checked);document.querySelectorAll(`[translation='settings.apps.active'], [translation='settings.apps.inactive']`).forEach(el => el.setAttribute('translation', this.checked?'settings.apps.active':'settings.apps.inactive'));document.getElementById('apps_tbody').setAttribute('inactive', !this.checked);"/>
-                    <span class="slider"></span>
-                </label>
-            </label>
-
-            <table id="apps_table" disabled="false">
-                <thead style="justify-items: center;">
-                    <tr>
-                        <th id="apps_description" style="font-size: 10px; opacity: .7;">
-                            <span translation="settings.apps.active"></span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="apps_tbody"></tbody>
-            </table>
         </div>
 
         <div class="catagory">

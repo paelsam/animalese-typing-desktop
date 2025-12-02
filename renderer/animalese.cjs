@@ -7,6 +7,7 @@ const preferences = window.settings;
 
 document.addEventListener('DOMContentLoaded', () => {
     updateLanguage(preferences.get('lang'));
+    updateTheme(preferences.get('theme'));
 });
 
 // custom svg button element
@@ -28,6 +29,14 @@ function updateLanguage(lang) {// language selection update
     preferences.set('lang', lang);
     window.translator.load(lang);
     window.translator.update();
+}
+
+function updateTheme(theme) {
+    preferences.set('theme', theme);
+    const themeStyle = document.getElementById('theme-style');
+    if (themeStyle) {
+        themeStyle.setAttribute('href', `assets/styles/themes/${theme}.css`);
+    }
 }
 //#endregion
 

@@ -63,6 +63,12 @@ function initControls() {
             if (radio.checked) preferences.set('audio_mode', parseInt(radio.value));
         });
     });
+    document.querySelectorAll('input[name="theme"]').forEach(radio => {// themes initilize 
+        radio.checked = parseInt(radio.value) === preferences.get('theme');
+        radio.addEventListener('change', () => {
+            if (radio.checked) preferences.set('theme', parseInt(radio.value));
+        });
+    });
 
     // voice profile slider controls
     controls.forEach(control => {

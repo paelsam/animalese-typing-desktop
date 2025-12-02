@@ -51,6 +51,7 @@ const defaults = {
     lang: 'en',
     volume: 0.5,
     audio_mode: 0,
+    theme: 'default',
     startup_run: false,
     hold_repeat: true,
     always_active: true,
