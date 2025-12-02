@@ -15,11 +15,11 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "build:swift": "swiftc libs/key-listeners/swift-key-listener.swift -o swift-key-listener-x64 -target x86_64-apple-macosx11.0 && swiftc libs/key-listeners/swift-key-listener.swift -o swift-key-listener-arm64 -target arm64-apple-macosx11.0 && lipo -create -output swift-key-listener swift-key-listener-x64 swift-key-listener-arm64 && chmod +x ./swift-key-listener",
-    "build:mac": "npm run build:swift && electron-builder --mac -p never",
-    "build:cpp": "g++ -o libs/key-listeners/animalese-listener.exe libs/key-listeners/cpp-key-listener.cpp -mwindows -static -static-libgcc -static-libstdc++",
-    "build:win": "npm run build:cpp && electron-builder --win -p never",
-    "publish": "npm run build:cpp && npm run build:swift && electron-builder --mac --win -p never"
+    "build:mac-listener": "swiftc libs/key-listeners/swift-key-listener.swift -o swift-key-listener-x64 -target x86_64-apple-macosx11.0 && swiftc libs/key-listeners/swift-key-listener.swift -o swift-key-listener-arm64 -target arm64-apple-macosx11.0 && lipo -create -output swift-key-listener swift-key-listener-x64 swift-key-listener-arm64 && chmod +x ./swift-key-listener",
+    "build:mac": "npm run build:mac-listener && electron-builder --mac -p never",
+    "build:win-listener": "g++ -o libs/key-listeners/animalese-listener.exe libs/key-listeners/cpp-key-listener.cpp -mwindows -static -static-libgcc -static-libstdc++",
+    "build:win": "npm run build:win-listener && electron-builder --win -p never",
+    "publish": "npm run build:win-listener && npm run build:mac-listener && electron-builder --mac --win -p never"
   },
   "build": {
     "publish": {
