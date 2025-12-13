@@ -42,6 +42,8 @@ profileName.addEventListener('input', (e) => {
 window.api.onSettingUpdate('updated-startup_run', (value) => checkStartupRun.checked = value );
 
 function initControls() {
+    console.log("Initializing controls...");
+    
     voiceProfile = preferences.get('voice_profile');
     voiceProfileSlots = preferences.get('saved_voice_profiles');
     profileName.value = voiceProfileSlots[parseInt(document.getElementById('voice_profile_slot').value)]?.name || ``;
@@ -60,15 +62,11 @@ function initControls() {
     document.querySelectorAll('input[name="audio_mode"]').forEach(radio => {// audio mode initilize 
         radio.checked = parseInt(radio.value) === preferences.get('audio_mode');
         radio.addEventListener('change', () => {
+            console.log('Audio mode changed to:', radio.value);
             if (radio.checked) preferences.set('audio_mode', parseInt(radio.value));
         });
     });
-    document.querySelectorAll('input[name="theme"]').forEach(radio => {// themes initilize 
-        radio.checked = parseInt(radio.value) === preferences.get('theme');
-        radio.addEventListener('change', () => {
-            if (radio.checked) preferences.set('theme', parseInt(radio.value));
-        });
-    });
+    document.getElementById('theme_select').value = preferences.get('theme');
 
     // voice profile slider controls
     controls.forEach(control => {
@@ -99,8 +97,10 @@ function initControls() {
 
             if (updateSound && el.getAttribute('playing') !== 'true') {
                 el.setAttribute('playing', 'true');
-                window.audio.play(updateSound, { noRandom: true, channel: 2 });
-                setTimeout(() => el.setAttribute('playing', 'false'), 50);
+                setTimeout(() => {// give time for the voice settings to update before playing sound 
+                    window.audio.play(updateSound, { noRandom: true, channel: 2 });
+                    el.setAttribute('playing', 'false')
+                }, 50);
             }
         };
 
@@ -122,6 +122,7 @@ function initControls() {
                 updateValue(parseFloat(el.value) + (e.deltaY < 0 ? step : -step), control === 'master_volume'?'sfx.default':undefined);
             }, {passive: true});
             el.addEventListener('dblclick', () => updateValue(el.getAttribute('defaultValue')));
+            el.addEventListener('mouseup', () => updateValue(el.value, control === 'master_volume'?undefined:'&.ok'));
             if (outputEl) {
                 outputEl.addEventListener('click', () => outputEl.select());
                 outputEl.addEventListener('focusout', () => updateValue(outputEl.value));

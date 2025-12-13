@@ -315,7 +315,7 @@ async function startKeyListener() {
     }
 
     //if (!keyListener) return;
-    keyListener = spawn(`${process.resourcesPath}/animalese-listener`);
+    keyListener = spawn(listenerPath);
     keyListener.stdout.on('data', data => {
         const lines = data.toString().split('\n').filter(Boolean);
 
