@@ -23,6 +23,7 @@
     "build:linux":  "npm run build:linux-listener && electron-builder --linux -p never"
   },
   "build": {
+    "icon": "assets/images/icon_256x256.png",
     "publish": {
       "provider": "github",
       "owner": "joshxviii",
@@ -66,6 +67,10 @@
         {
           "from": "animalese-listener",
           "to": "animalese-listener"
+        },
+        {
+          "from": "assets/images/icon.png",
+          "to": "icon.png"
         }
       ]
     },

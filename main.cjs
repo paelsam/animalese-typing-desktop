@@ -6,16 +6,6 @@ const { spawn } = require('child_process');
 const fs = require('fs');
 const { autoUpdater } = require('electron-updater');
 
-function computeResourcesRoot(p) {
-    if (!p) return p || '';
-    const parts = p.split(path.sep).filter(Boolean);
-    const resIdx = parts.lastIndexOf('resources');
-    if (resIdx >= 0) return path.sep + parts.slice(0, resIdx + 1).join(path.sep);
-    const asarIdx = parts.lastIndexOf('app.asar');
-    if (asarIdx >= 0) return path.sep + parts.slice(0, asarIdx).join(path.sep) + path.sep + 'resources';
-    return p;
-}
-
 // Conditionally import get-windows (not supported on Linux)
 let getFocusedWindow = null;
 if (process.platform !== 'linux') {
