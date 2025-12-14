@@ -4,17 +4,12 @@
     
     "volume":"Lautstärke",
 
-    "config_1":"standard",
-    "config_2":"nur animalese",
-    "config_3":"nur sfx",
-    "config_4":"zufällig <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(tippen verbergen)</span>",
-
     "editor_title":"Editor",
-    "editor_1":"tonhöhenversch.",
-    "editor_2":"intonation",
-    "editor_3":"tonvariation",
-    "voice_profiles":"gespeicherte stimmen",
-    "key-remapper":"tastenbelegung ändern",
+    "voice.pitch":"tonhöhenversch.",
+    "voice.intonation":"intonation",
+    "voice.variation":"tonvariation",
+    "voice.profile":"gespeicherte stimmen",
+    "remapper":"tastenbelegung ändern",
     "remap":"klicken zum ändern",
 
     "f1":"Ausgeglichen",
@@ -31,6 +26,10 @@
     "settings.startup":"beim start",
     "settings.disable":"Deaktivieren",
     "settings.audio_mode":"audio-modus",
+    "settings.audio_mode.1":"standard",
+    "settings.audio_mode.2":"nur animalese",
+    "settings.audio_mode.3":"nur sfx",
+    "settings.audio_mode.4":"zufällig <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(tippen verbergen)</span>",
     "settings.apps":"animalese-fähige apps",
     "settings.apps.mode":"app-listenmodus: &nbsp",
     "settings.apps.active": "<span style='color: green'>aktiv</span>, wenn die ausgewählten Apps im Fokus sind",

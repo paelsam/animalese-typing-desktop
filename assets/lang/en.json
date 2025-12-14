@@ -4,17 +4,12 @@
     
     "volume":"Volume",
 
-    "config_1":"default",
-    "config_2":"animalese only",
-    "config_3":"sfx only",
-    "config_4":"randomized <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(disguise typing)</span>",
-
     "editor_title":"Editor",
-    "editor_1":"pitch shift",
-    "editor_2":"intonation",
-    "editor_3":"pitch variation",
-    "voice_profiles":"saved voices",
-    "key-remapper":"key-remapper",
+    "voice.pitch":"pitch shift",
+    "voice.intonation":"intonation",
+    "voice.variation":"pitch variation",
+    "voice.profile":"saved voices",
+    "remapper":"key-remapper",
     "remap":"click to remap",
 
     "f1":"Sweet",
@@ -31,6 +26,10 @@
     "settings.startup":"run on startup",
     "settings.disable":"Disable",
     "settings.audio_mode":"audio mode",
+    "settings.audio_mode.1":"default",
+    "settings.audio_mode.2":"animalese only",
+    "settings.audio_mode.3":"sfx only",
+    "settings.audio_mode.4":"randomized <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(disguise typing)</span>",
     "settings.apps":"animalese enabled apps",
     "settings.apps.mode": "list mode <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>allow/deny toggle</span>",
     "settings.apps.active": "<span style='color: green'>active</span> when the selected apps are focused",

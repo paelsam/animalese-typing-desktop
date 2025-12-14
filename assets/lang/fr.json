@@ -4,17 +4,12 @@
 
     "volume":"Volume",
 
-    "config_1":"défaut",
-    "config_2":"voix",
-    "config_3":"effets sonores",
-    "config_4":"aléatoire <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(masquer la saisie)</span>",
-
     "editor_title":"Éditeur",
-    "editor_1":"variation hauteur",
-    "editor_2":"intonation",
-    "editor_3":"variation de ton",
-    "voice_profiles":"voix enregistrées",
-    "key-remapper":"raccourcis clavier",
+    "voice.pitch":"variation hauteur",
+    "voice.intonation":"intonation",
+    "voice.variation":"variation de ton",
+    "voice.profile":"voix enregistrées",
+    "remapper":"raccourcis clavier",
     "remap":"clic pour modifier",
 
     "f1":"Normal",
@@ -31,6 +26,10 @@
     "settings.startup":"lancer au démarrage",
     "settings.disable":"Désactiver",
     "settings.audio_mode":"mode audio",
+    "settings.audio_mode.1":"défaut",
+    "settings.audio_mode.2":"voix",
+    "settings.audio_mode.3":"effets sonores",
+    "settings.audio_mode.4":"aléatoire <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(masquer la saisie)</span>",
     "settings.apps":"apps avec animalese",
     "settings.apps.mode":"mode de liste: &nbsp",
     "settings.apps.active": "<span style='color: green'>actif</span> si les apps sélectionnées sont actives",

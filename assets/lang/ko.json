@@ -4,17 +4,12 @@
 
     "volume":"볼륨",
 
-    "config_1":"기본값",
-    "config_2":"동숲 주민 음성만",
-    "config_3":"효과음만",
-    "config_4":"무작위 <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(입력 숨기기)</span>",
-
     "editor_title":"편집기",
-    "editor_1":"음정 변경",
-    "editor_2":"억양",
-    "editor_3":"음높이 변화",
-    "voice_profiles":"저장된 음성",
-    "key-remapper":"키 지정하기",
+    "voice.pitch":"음정 변경",
+    "voice.intonation":"억양",
+    "voice.variation":"음높이 변화",
+    "voice.profile":"저장된 음성",
+    "remapper":"키 지정하기",
     "remap":"클릭하여 다시 지정",
 
     "f1":"친절함",
@@ -31,6 +26,10 @@
     "settings.startup":"시작 시 실행",
     "settings.disable":"비활성화",
     "settings.audio_mode":"오디오 설정",
+    "settings.audio_mode.1":"기본값",
+    "settings.audio_mode.2":"동숲 주민 음성만",
+    "settings.audio_mode.3":"효과음만",
+    "settings.audio_mode.4":"무작위 <span style='opacity: .6; font-size: 10px; margin: 3px 6px;'>(입력 숨기기)</span>",
     "settings.apps":"동숲 주민 소리를 재생할 앱",
     "settings.apps.mode":"사용하는 앱 목록: &nbsp",
     "settings.apps.active": "선택한 앱이 포커스될 때 <span style='color: green'>활성화</span>",
