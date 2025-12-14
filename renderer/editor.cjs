@@ -423,6 +423,18 @@ const specialLayout = [
 
 const voiceLayout = [
     [
+        {label:'1', btnType:'s', sound:`&.1`},
+        {label:'2', btnType:'s', sound:`&.2`},
+        {label:'3', btnType:'s', sound:`&.3`},
+        {label:'4', btnType:'s', sound:`&.4`},
+        {label:'5', btnType:'s', sound:`&.5`},
+        {label:'6', btnType:'s', sound:`&.6`},
+        {label:'7', btnType:'s', sound:`&.7`},
+        {label:'8', btnType:'s', sound:`&.8`},
+        {label:'9', btnType:'s', sound:`&.9`},
+        {label:'0', btnType:'s', sound:`&.0`},
+    ],
+    [
         {label:'A', btnType:'s', sound:`&.a`},
         {label:'B', btnType:'s', sound:`&.b`},
         {label:'C', btnType:'s', sound:`&.c`},
@@ -713,8 +725,8 @@ function centerPianoKeys() {
 
 function press(btn, holdKey=false) {
     if (!btn.classList.contains('pressed')) {
-        const sound = btn.getAttribute('sound') ?? 'sfx.default';
-        const label = btn.getAttribute('label') ?? '';
+        const sound = btn.getAttribute('sound');
+        if (!sound) return;
         btn.classList.add('pressed');
         if (holdKey) {
             window.audio.play(sound, {noRandom: true, hold: 0});

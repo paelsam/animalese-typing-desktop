@@ -32,8 +32,8 @@ function showIfAble() { // focus the existing window if it exists
     }
 }
 
-function setDisable(value) {
-    value = preferences.get('always_active') ? false : value;
+function setDisable(value = true) {
+    value = preferences.get('mute_app') ? true : preferences.get('always_active') ? false : value;
     if (disabled === value) return;
     disabled = value;
     if (tray) {
@@ -53,6 +53,7 @@ const defaults = {
     volume: 0.5,
     audio_mode: 0,
     theme: 'default',
+    mute_app: false,
     startup_run: false,
     hold_repeat: true,
     always_active: true,
@@ -60,7 +61,7 @@ const defaults = {
     selected_active: true,
     voice_profile: {
         type: 'f1',
-        shift: 0.0,
+        pitch: 0.0,
         variation: 0.2,
         intonation: 0.0
     },
@@ -120,7 +121,7 @@ ipcMain.on('set-run-on-startup', (e, value) => setRunOnStartup(value));
 var bgwin = null;
 var remapwin = null;
 var tray = null;
-var disabled = !preferences.get('always_active');
+var disabled = preferences.get('mute_app') || !preferences.get('always_active');
 let lastFocusedWindow = null;
 let focusedWindows = [];
 
@@ -240,6 +241,16 @@ function createRemapWin() {
 
 function updateTrayMenu() {
     const contextMenu = Menu.buildFromTemplate([
+        {
+            label:'Disable Animalese Typing',
+            type: 'checkbox',
+            click: (menuItem) => { 
+                const value = menuItem.checked;
+                preferences.set('mute_app', value);
+                bgwin.webContents.send(`updated-mute_app`, value); 
+                setDisable(value);
+            }
+        },
         {
             label: 'Show Editor',
             click: () => { showIfAble(); }
