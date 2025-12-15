@@ -58,7 +58,7 @@ const defaults = {
     volume: 0.5,
     audio_mode: 0,
     theme: 'default',
-    disable_hotkey: 'Shift+F5',
+    disable_hotkey: 'F5',
     startup_run: false,
     hold_repeat: true,
     always_active: true,
@@ -269,7 +269,7 @@ function updateTrayMenu() {
             checked: muted,
             click: (menuItem) => { 
                 muted = menuItem.checked;
-                setDisable(muted);
+                setDisable();
                 if (bgwin) bgwin.webContents.send('muted-changed', muted);
             }
         },
@@ -326,7 +326,7 @@ function updateDisableHotkey(hotkey) {
     globalShortcut.unregisterAll();
     globalShortcut.register(hotkey, () => {// TODO: give warning to renderer when hotkey registration fails
         muted = !muted;
-        setDisable(muted);
+        setDisable();
         updateTrayMenu();
         if (bgwin) bgwin.webContents.send('muted-changed', muted);
     });
