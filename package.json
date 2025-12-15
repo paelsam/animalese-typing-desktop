@@ -15,7 +15,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "build:mac-listener": "swiftc -o libs/key-listeners/animalese-listener-x64 libs/key-listeners/mac-key-listener.swift -target x86_64-apple-macosx11.0 && swiftc libs/key-listeners/mac-key-listener.swift -o animalese-listener-arm64 -target arm64-apple-macosx11.0 && lipo -create -output animalese-listener animalese-listener-x64 animalese-listener-arm64 && chmod +x libs/key-listeners/animalese-listener",
+    "build:mac-listener": "swiftc libs/key-listeners/mac-key-listener.swift -o libs/key-listeners/animalese-listener-x64 -target x86_64-apple-macosx11.0 && swiftc libs/key-listeners/mac-key-listener.swift -o libs/key-listeners/animalese-listener-arm64 -target arm64-apple-macosx11.0 && lipo -create -output libs/key-listeners/animalese-listener libs/key-listeners/animalese-listener-x64 libs/key-listeners/animalese-listener-arm64 && chmod +x libs/key-listeners/animalese-listener",
     "build:win-listener": "g++    -o libs/key-listeners/animalese-listener.exe libs/key-listeners/win-key-listener.cpp -mwindows -static -static-libgcc -static-libstdc++",
     "build:linux-listener": "g++    -o libs/key-listeners/animalese-listener libs/key-listeners/linux-key-listener.cpp -lX11 -lXtst && chmod +x libs/key-listeners/animalese-listener",
     "build:mac": "npm run build:mac-listener && electron-builder --mac -p never",
