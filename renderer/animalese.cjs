@@ -39,6 +39,11 @@ function updateTheme(theme) {
     }
 }
 
+window.updateVoiceLanguage = (language) => {
+    preferences.set('voice_language', language);
+    window.audio.play('&.ok', { noRandom: true, channel: 2 });
+}
+
 window.api.onMutedChanged((muted) => {
     const warning = document.getElementById('disabled_warning');
     warning.setAttribute('translation', muted ? 'warning.disabled' : 'warning.enabled');
