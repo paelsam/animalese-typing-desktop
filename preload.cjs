@@ -41,6 +41,7 @@ contextBridge.exposeInMainWorld('api', {
     closeWindow: () => ipcRenderer.send('close-window'),
     minimizeWindow: () => ipcRenderer.send('minimize-window'),
     showWindow: () => ipcRenderer.send('show-window'),
+    toggleMuted: () => ipcRenderer.send('toggle-muted'),
     getDefaultMapping: () => defaultKeyMap,
     sendRemapSound: (remapSound) => ipcRenderer.send('remap-send', remapSound),
     onRemapSound: (callback) => ipcRenderer.on('remap-sound', (_, remapSound) => callback(remapSound)),

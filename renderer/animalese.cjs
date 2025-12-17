@@ -10,17 +10,28 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTheme(preferences.get('theme'));
 });
 
+const observer = new MutationObserver(mutations => {
+    mutations.forEach( mutation => updateIcon(mutation.target) );
+});
+
+function updateIcon(el) {
+    const icon = el.getAttribute('icon');
+    fetch(`assets/svg/${icon}.svg`)
+    .then(res => res.text())
+    .then(svg => {
+        el.innerHTML = svg;
+        const svgEl = el.querySelector('svg');
+        svgEl.classList.add('svg-button');
+    });
+}
 // custom svg button element
 customElements.define('svg-button', class extends HTMLElement {
     connectedCallback() {
-        const icon = this.getAttribute('icon');
-        
-        fetch(`assets/svg/${icon}.svg`)
-        .then(res => res.text())
-        .then(svg => {
-            this.innerHTML = svg;
-            const svgEl = this.querySelector('svg');
-            svgEl.classList.add('svg-button');
+        updateIcon(this);
+        // update svg on icon attribute change
+        observer.observe(this, {
+            subtree: false,
+            attributeFilter: ['icon']
         });
     }
 });
@@ -40,6 +51,12 @@ function updateTheme(theme) {
 }
 
 window.api.onMutedChanged((muted) => {
+    const disableButton = document.getElementById('disable_app_button');
+    if (disableButton) {
+        // update button icon from stop to start.
+        disableButton.setAttribute('icon', muted ? 'start' : 'stop');
+        disableButton.setAttribute('title', muted ? 'Enable app' : 'Disable app');
+    }
     const warning = document.getElementById('disabled_warning');
     warning.setAttribute('translation', muted ? 'warning.disabled' : 'warning.enabled');
     setTimeout(() => {
@@ -52,6 +69,7 @@ window.api.onSettingUpdate('updated-disable_hotkey', () => {
     const hotkeySpan = document.getElementById('hotkey');
     if (hotkeySpan) hotkeySpan.innerHTML = `${preferences.get('disable_hotkey')}`.toUpperCase();
 });
+
 //#endregion
 
 function handleSpeicalCommand(command) {

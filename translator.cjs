@@ -53,9 +53,7 @@ function updateElementTranslation(el) {
 }
 
 const observer = new MutationObserver(mutations => {
-    mutations.forEach(mutation => {
-        updateElementTranslation(mutation.target);
-    });
+    mutations.forEach( mutation => updateElementTranslation(mutation.target) );
 });
 
 // update translations for all elements on the document

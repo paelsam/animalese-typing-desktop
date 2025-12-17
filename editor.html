@@ -24,6 +24,7 @@ author: joshxviii
         <div style="display: flex; padding: 0px 16px; gap: 16px;">
             <svg-button onclick="window.api.openRemapSettings()" icon="keyboard" title="Key Bindings"></svg-button>
             <svg-button onclick="openSettings()" icon="config" title="Settings"></svg-button>
+            <svg-button id="disable_app_button" onclick="window.api.toggleMuted()" icon="stop" title="Disable app"></svg-button>
             <svg-button onclick="window.api.minimizeWindow()" icon="minimize" title="Minimize"></svg-button>
             <svg-button onclick="window.api.closeWindow()" icon="close" title="Close"></svg-button>
         </div>
@@ -244,7 +245,7 @@ author: joshxviii
                     <label class="editor_label" style="display: flex;" translation="note.transpose">
                         <div>
                             <input id="note_transpose" class="editor_slider" type="range" min="-12" max="12" step="1" value="0" defaultValue="0"></input>
-                            <input type="text" id="note_transpose_out" class="editor_output" />
+                            <input type="text" id="note_transpose_out" class="editor_output" display="int" />
                         </div>
                     </label>
                 </div>
