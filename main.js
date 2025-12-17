@@ -30,10 +30,17 @@ const SYSTRAY_ICON_MUTE = (process.platform === 'darwin') ? path.join(__dirname,
 const ICON = path.join(__dirname, '/assets/images/icon.png');
 const gotTheLock = app.requestSingleInstanceLock();
 
-function showIfAble() { // focus the existing window if it exists
+function toggleVisibility(visible = null) { // focus the existing window if it exists
     if (bgwin) {
-        bgwin.show();
-        bgwin.focus();
+        if (visible === null) visible = !bgwin.isVisible();
+        if (!visible) {
+            bgwin.hide();
+            return;
+        }
+        else {
+            bgwin.show();
+            bgwin.focus();
+        }
     }
 }
 
@@ -49,7 +56,7 @@ function setDisable(value = true) {
 }
 
 if (!gotTheLock) app.quit(); // if another instance is already running then quit
-else app.on('second-instance', () => showIfAble()); // show instance that is running
+else app.on('second-instance', () => toggleVisibility(true)); // show instance that is running
 
 app.setAppUserModelId('com.joshxviii.animalese-typing');
 
@@ -116,13 +123,16 @@ ipcMain.handle('store-reset', async (e, key) => {// reset a certain key or all s
     }
 });
 ipcMain.on('show-window', (e) => {
-    showIfAble();
+    toggleVisibility(true);
 });
 ipcMain.on('close-window', (e) => {
     if (bgwin) bgwin.close();
 });
 ipcMain.on('minimize-window', (e) => {
     if (bgwin) bgwin.minimize();
+});
+ipcMain.on('toggle-muted', (e) => {
+    toggleMuted();
 });
 ipcMain.on('remap-send', (e, sound) => { if (bgwin) bgwin.webContents.send(`remap-sound`, sound)});
 ipcMain.on('open-remap-settings', (e) => {
@@ -275,7 +285,7 @@ function updateTrayMenu() {
         },
         {
             label: 'Show Editor',
-            click: () => { showIfAble(); }
+            click: () => { toggleVisibility(true); }
         },
         {
             id: 'startup',
@@ -315,7 +325,7 @@ function createTrayIcon() {
     updateTrayMenu();
 
     // On Windows, clicking shows the window, while on macOS it shows the context menu
-    if (process.platform != 'darwin') tray.on('click', () => { showIfAble(); });
+    if (process.platform != 'darwin') tray.on('click', () => { toggleVisibility(); });
     tray.displayBalloon({
         title: "Animalese Typing",
         content: "Animalese Typing is Running!"
@@ -325,11 +335,15 @@ function createTrayIcon() {
 function updateDisableHotkey(hotkey) {
     globalShortcut.unregisterAll();
     globalShortcut.register(hotkey, () => {// TODO: give warning to renderer when hotkey registration fails
-        muted = !muted;
-        setDisable();
-        updateTrayMenu();
-        if (bgwin) bgwin.webContents.send('muted-changed', muted);
+        toggleMuted();
     });
+}
+
+function toggleMuted() {
+    muted = !muted;
+    setDisable();
+    updateTrayMenu();
+    if (bgwin) bgwin.webContents.send('muted-changed', muted);
 }
 
 //#region KeyListener
