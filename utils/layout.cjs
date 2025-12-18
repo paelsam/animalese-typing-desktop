@@ -6,7 +6,7 @@ let voice_language = ipcRenderer.sendSync('get-store-data-sync').voice_language 
 ipcRenderer.on('updated-voice_language', (_, value) => {voice_language = value;});
 
 function fetchLayout(layout = '') {
-    const f = layout === 'speech' ? `speech/${voice_language}`: layout;
+    const f = layout === 'voice' ? `voice/${voice_language}`: layout;
     const layoutFilePath = path.join(__dirname, '../assets/layouts', `${f}.json`);
     console.log('Fetching layout from:', layoutFilePath);
 

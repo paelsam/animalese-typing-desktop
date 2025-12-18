@@ -9,7 +9,7 @@ let layout = []; // current selected layout
  * @param {string} layoutName 
  * @returns {string} HTML string representing the board layout.
  */
-function updateBoardLayout(layoutName = 'speech') {
+function updateBoardLayout(layoutName = 'voice') {
     layout = window.api.fetchLayout(layoutName)
     console.log('Fetched layout:', layoutName, layout);
     const layoutContainer = document.getElementById('layout_container');
