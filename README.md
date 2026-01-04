@@ -1,10 +1,12 @@
 # Animalese Typing - Desktop
+
+**NOTE:** This is a fork with ***vibe-code***, specifically I implemented Linux evdev support to allow the app to run on Wayland.
+
 > Animalese Typing is a desktop application that plays animalese sound effects as you type!
 
 #### A desktop version of my [Animalese Typing Web Extension](https://www.youtube.com/watch?v=wdxvKpUY7q8). 😊
 
 ---
-
 
 <br/>
 
@@ -55,6 +57,23 @@ cd animalese-typing-desktop
 npm install
 ```
 
+### Linux Dependencies:
+
+Before building on Linux, install the required development libraries (I only tested on Arch Linux, so the commands below are for Arch-based distros):
+
+```sh
+# Arch
+sudo pacman -S libx11 libxtst libevdev
+```
+
+**Wayland Support:** The Linux key listener supports both X11 and Wayland. For Wayland, the listener uses evdev which requires permission to read `/dev/input/`. Add your user to the `input` group:
+
+```sh
+sudo usermod -aG input $USER
+```
+
+Then log out and back in for the changes to take effect.
+
 ### Building:
 
 This app uses a child process `animalese-listener` to recieve global key inputs.
@@ -87,6 +106,8 @@ npm start
 <br/>
 
 ### Credits
+
+Fork by @paelsam
 
 Developed by @joshxviii
 
