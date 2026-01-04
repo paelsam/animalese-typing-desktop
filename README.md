@@ -1,7 +1,4 @@
 # Animalese Typing - Desktop
-
-**NOTE:** This is a fork with ***vibe-code***, specifically I implemented Linux evdev support to allow the app to run on Wayland.
-
 > Animalese Typing is a desktop application that plays animalese sound effects as you type!
 
 #### A desktop version of my [Animalese Typing Web Extension](https://www.youtube.com/watch?v=wdxvKpUY7q8). 😊
@@ -59,11 +56,21 @@ npm install
 
 ### Linux Dependencies:
 
-Before building on Linux, install the required development libraries (I only tested on Arch Linux, so the commands below are for Arch-based distros):
+Before building on Linux, install the required development libraries:
 
 ```sh
-# Arch
+# Arch Linux 
 sudo pacman -S libx11 libxtst libevdev
+```
+
+```sh
+# Fedora / RHEL
+sudo dnf install gcc-c++ libX11-devel libXtst-devel libevdev-devel pkgconf-pkg-config
+```
+
+```sh
+# Ubuntu / Debian
+sudo apt install g++ libx11-dev libxtst-dev libevdev-dev pkg-config
 ```
 
 **Wayland Support:** The Linux key listener supports both X11 and Wayland. For Wayland, the listener uses evdev which requires permission to read `/dev/input/`. Add your user to the `input` group:
@@ -86,7 +93,7 @@ These binaries have to be built before packing the rest of the app or running in
 |Linux:   |`npm run build:linux-listner`|
 
 The binary output can be found in [/libs/key-listeners](./libs/key-listeners).<br/>
-After that you can run `npm run build` to build the final .exe/.dmg/.deb
+After that you can run `npm run build` to build the final .exe/.dmg/.deb/.AppImage
 
 Alternatively you can just run `build:[your-os]` to build the listener and the app together:
 
@@ -96,7 +103,7 @@ Alternatively you can just run `build:[your-os]` to build the listener and the a
 |macOS:   |`npm run build:mac`  |
 |Linux:   |`npm run build:linux`|
 
-The final .exe/.dmg/.deb can found in the [/exports](./exports) folder.
+The final .exe/.dmg/.deb/.AppImage can found in the [/exports](./exports) folder.
 
 ### Run in dev mode:
 ```sh
@@ -106,8 +113,6 @@ npm start
 <br/>
 
 ### Credits
-
-Fork by @paelsam
 
 Developed by @joshxviii
 
