@@ -79,7 +79,9 @@ sudo apt install g++ libx11-dev libxtst-dev libevdev-dev pkg-config
 sudo usermod -aG input $USER
 ```
 
-Then log out and back in for the changes to take effect.
+Then log out and back in (or restart your computer) for the changes to take effect.
+
+> **Security Warning:** Adding your user to the `input` group grants read access to all input devices (`/dev/input/*`), including keyboards and mice. This means any application running as your user could potentially read keystrokes (including passwords). Only proceed if you understand and accept this risk. This permission is required for the application to capture global keyboard events on Wayland, as Wayland does not allow applications to listen to global input events by default for security reasons.
 
 ### Building:
 
